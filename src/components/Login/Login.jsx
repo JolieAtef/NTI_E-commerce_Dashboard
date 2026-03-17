@@ -5,6 +5,7 @@ import {z} from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import {Link , useNavigate } from "react-router-dom";
+import toast , { Toaster } from "react-hot-toast";
 
 let schema = z.object({  
    email:z.string().email(),
@@ -28,6 +29,7 @@ export function Login() {
           navigate("/categories")
     }).catch((err)=> {
       console.log(err)
+      toast.error("Login failed")
     })
   }
 
@@ -50,6 +52,7 @@ export function Login() {
   <button type="submit" className="text-white bg-gradient-to-r from-cyan-500 via-cyan-600 to-cyan-700 hover:bg-gradient-to-br focus:outline-none shadow-lg shadow-cyan-500/50 dark:shadow-lg dark:shadow-cyan-800/80 font-medium rounded-base text-sm px-4 py-2.5 text-center leading-5 cursor-pointer w-3/4 m-auto block">Login</button>
   <Link to="/register" className="text-center block mt-5 text-blue-500">create new account</Link>
 </form>
+<Toaster position="top-right"/>
 </main>
 
   </>
