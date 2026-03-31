@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import style from "./BlankLayout.module.css"
+import "./BlankLayout.css"
 import { initFlowbite } from "flowbite";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
@@ -26,15 +26,17 @@ return <>
          </button>
         <span className="flex items-center gap-1.5 ms-2 md:me-24">
           <svg className="w-7 h-7 transition duration-75 text-cyan-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6.025A7.5 7.5 0 1 0 17.975 14H10V6.025Z"/><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.5 3c-.169 0-.334.014-.5.025V11h7.975c.011-.166.025-.331.025-.5A7.5 7.5 0 0 0 13.5 3Z"/></svg>
-          <span className="self-center text-2xl font-bold whitespace-nowrap dark:text-white">Dashboard</span>
+          <span className="self-center text-2xl font-bold whitespace-nowrap">Dashboard</span>
         </span>
       </div>
       <div className="flex items-center">
           <div className="flex items-center ms-3">
             <div>
-              <button type="button" className="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" aria-expanded="false" data-dropdown-toggle="dropdown-user">
+              <button type="button" className="flex text-sm bg-gray-500 rounded-full  focus:ring-gray-300 dark:focus:ring-gray-600 cursor-pointer" aria-expanded="false" data-dropdown-toggle="dropdown-user">
                 <span className="sr-only">Open user menu</span>
-                <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo"/>
+                <div className="relative w-10 h-10 overflow-hidden bg-neutral-secondary-medium rounded-full">
+                <svg className="absolute w-12 h-12 text-body-subtle -left-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd"></path></svg>
+                </div>
               </button>
             </div>
             <div className="z-50 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44" id="dropdown-user">
@@ -48,7 +50,7 @@ return <>
               </div>
               <ul className="p-2 text-sm text-body font-medium" role="none">
               <li>
-                  <button href="#" onClick={SignOut} className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded" role="menuitem">Sign out</button>
+                  <button href="#" onClick={SignOut} className="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded cursor-pointer" role="menuitem">Sign out</button>
                 </li>
               </ul>
             </div>
@@ -62,33 +64,33 @@ return <>
    <div className="h-full px-3 py-4 overflow-y-auto border-e border-default">
       <ul className="space-y-2 font-medium pt-15">
          <li>
-            <NavLink to="/categories" className="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 group">
-               <span className="ms-3">Categories</span>
+            <NavLink to="/categories" className="flex items-center px-2 py-2.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600  hover:border-r-4 hover:border-cyan-600 group">
+               <span className="ms-3"><i className="fa-solid fa-layer-group text-md mr-2"></i>Categories</span>
             </NavLink>
          </li>
          <li>
-            <NavLink to="/subcategories" className="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 group">
-               <span className="ms-3">SubCategories</span>
+            <NavLink to="/subcategories" className="flex items-center px-2 py-2.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600  hover:border-r-4 hover:border-cyan-600 group">
+               <span className="ms-3"><i className="fa-solid fa-folder-tree text-md mr-2"></i>SubCategories</span>
             </NavLink>
          </li>
          <li>
-            <NavLink to="/brands" className="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 group">
-               <span className="ms-3">Brands</span>
+            <NavLink to="/brands" className="flex items-center px-2 py-2.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 hover:border-r-4 hover:border-cyan-600 group">
+               <span className="ms-3"><i className="fa-solid fa-tags text-md mr-2"></i>Brands</span>
             </NavLink>
          </li>
          <li>
-            <NavLink to="/products" className="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 group">
-               <span className="ms-3">Products</span>
+            <NavLink to="/products" className="flex items-center px-2 py-2.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600  hover:border-r-4 hover:border-cyan-600 group">
+               <span className="ms-3"><i className="fa-solid fa-boxes-stacked text-md mr-2"></i>Products</span>
             </NavLink>
          </li>
          <li>
-            <NavLink to="/coupons" className="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 group">
-               <span className="ms-3">Coupons</span>
+            <NavLink to="/coupons" className="flex items-center px-2 py-2.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600  hover:border-r-4 hover:border-cyan-600 group">
+               <span className="ms-3"><i className="fa-solid fa-ticket text-md mr-2"></i>Coupons</span>
             </NavLink>
          </li>
          <li>
-            <NavLink to="/orders" className="flex items-center px-2 py-1.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600 group">
-               <span className="ms-3">Orders</span>
+            <NavLink to="/orders" className="flex items-center px-2 py-2.5 text-body rounded-base hover:bg-neutral-tertiary hover:text-cyan-600  hover:border-r-4 hover:border-cyan-600 group">
+               <span className="ms-3"><i className="fa-solid fa-cart-shopping text-md mr-2"></i>Orders</span>
             </NavLink>
          </li>
          

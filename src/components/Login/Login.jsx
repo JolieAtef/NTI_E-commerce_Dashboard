@@ -36,7 +36,7 @@ export function Login() {
   return <>
     
 <main className="flex justify-center items-center min-h-screen bg-cyan-50 ">
-<form className="max-w-lg mx-auto border-2 border-gray-300 shadow rounded-2xl w-2/5 p-10 bg-white/70 " onSubmit={handleSubmit(SignIn) }>
+<form className="max-w-lg mx-auto border-2 border-gray-300 shadow rounded-2xl md:w-2/5 p-10 bg-white/70 " onSubmit={handleSubmit(SignIn) }>
 <h2 className="text-2xl text-center mb-6 font-semibold">Login To Your Account</h2>
 
   <div className="relative z-0 w-full mb-10 group ">

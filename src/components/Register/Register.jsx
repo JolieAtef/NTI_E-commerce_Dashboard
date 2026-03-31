@@ -35,7 +35,7 @@ export function Register() {
   return <>
     
     <main className="flex justify-center items-center min-h-screen bg-cyan-50 ">
-    <form className="max-w-lg mx-auto border-2 border-gray-300 shadow rounded-2xl w-2/5 p-10 bg-white/70 " onSubmit={handleSubmit(SignUp) }>
+    <form className="max-w-lg mx-auto border-2 border-gray-300 shadow rounded-2xl md:w-2/5 p-10 bg-white/70 " onSubmit={handleSubmit(SignUp) }>
 <h2 className="text-2xl text-center font-semibold mb-5">Create New Account</h2>
 <div className="relative z-0 w-full mb-10 group">
       <input {...register("name")} type="text" id="floating_first_name" className="block py-2.5 px-0 w-full text-sm text-heading bg-transparent border-0 border-b-2 border-default-medium appearance-none focus:outline-none focus:ring-0 focus:border-brand peer" />

@@ -5,6 +5,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import {z} from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Link } from "react-router-dom";
 
 const schema= z.object({
   title:z.string().min(3,"title must be at least 3 character").max(30,"title must be at most 30 character"),
@@ -37,7 +38,7 @@ export function Products() {
      category:"",
      subCategory:"",
      brand:"",
-    imageCover:"",
+     imageCover:"",
     images:[""]
     },resolver: zodResolver(schema)
   })
@@ -60,7 +61,7 @@ export function Products() {
     })
 } 
 
-  function fetchCategories(){
+ function fetchCategories(){
       axios.get("https://nti-ecommerce.vercel.app/api/v1/categories",{
         headers:localStorage.getItem("token")
       }).then((res)=>{
@@ -229,11 +230,13 @@ function fetchBrands(){
                 </th>
                 <th className="px-6 py-4">
                <div className="btns flex gap-3.5 transition-all duration-200">
+                <Link  to={`/product/${product._id}`} className="text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-cyan-600 hover:shadow-cyan-600/60  hover:-translate-y-1 transition-all duration-300 focus:ring-4 focus:ring-neutral-tertiary-soft shadow  leading-5 rounded-full text-xl p-3 focus:outline-none cursor-pointer"><i className="fa-solid fa-arrow-up-right-from-square text-md"></i></Link>
                 <button onClick={()=>openModel(product)} type="button" className="text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-cyan-600 hover:shadow-cyan-600/60  hover:-translate-y-1 transition-all duration-300 focus:ring-4 focus:ring-neutral-tertiary-soft shadow  leading-5 rounded-full text-xl p-3 focus:outline-none cursor-pointer"><i className="fa-regular fa-pen-to-square"></i></button>
                 <button onClick={()=>deleteProduct(product._id)} type="button" className="text-body bg-neutral-primary-soft border border-default hover:bg-neutral-secondary-medium hover:text-red-600 hover:shadow-red-600/60 hover:-translate-y-1 transition-all duration-300 focus:ring-4 focus:ring-neutral-tertiary-soft shadow  leading-5 rounded-full text-xl p-3 focus:outline-none cursor-pointer"><i className="fa-regular fa-trash-can"></i></button>
                 </div>
                 </th>
             </tr>
+          
           )}
        
         </tbody>
@@ -295,14 +298,11 @@ function fetchBrands(){
                         <label for="description" class="block mb-2.5 text-sm font-medium text-heading">Product Description</label>
                         <textarea id="description" rows="4" class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write product description here"></textarea>                    
                     </div>
-                    <div class="col-span-2">
-                        <label for="description" class="block mb-2.5 text-sm font-medium text-heading">Product Description</label>
-                        <textarea id="description" rows="4" class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write product description here"></textarea>                    
-                    </div>
+            
 
                 </div>
                     <label  class="block mb-2.5 text-sm font-medium text-heading">Cover Image</label>
-                    <div className="flex items-center justify-center w-full my-4 ">
+                   <div className="flex items-center justify-center w-full my-4 ">
                     <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 bg-neutral-secondary-medium border border-dashed border-default-strong rounded-base cursor-pointer hover:bg-neutral-tertiary-medium">
                     <div className="flex flex-col items-center justify-center text-body pt-5 pb-6">
                     <svg className="w-8 h-8 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2"/></svg>
@@ -310,9 +310,22 @@ function fetchBrands(){
                   <p className="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                   </div>
                   <input {...register("imageCover")} id="dropzone-file" type="file" className="hidden" />
-                  {formState.errors.image &&<p className="text-sm text-red-500">{formState.errors.image.message}</p>}
+                  {formState.errors.imageCover &&<p className="text-sm text-red-500">{formState.errors.imageCover.message}</p>}
                  </label>
-                </div>
+                  </div>
+
+                  <label  class="block mb-2.5 text-sm font-medium text-heading">Product Images</label>
+                   <div className="flex items-center justify-center w-full my-4 ">
+                    <label htmlFor="dropzone-file" className="flex flex-col items-center justify-center w-full h-64 bg-neutral-secondary-medium border border-dashed border-default-strong rounded-base cursor-pointer hover:bg-neutral-tertiary-medium">
+                    <div className="flex flex-col items-center justify-center text-body pt-5 pb-6">
+                    <svg className="w-8 h-8 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h3a3 3 0 0 0 0-6h-.025a5.56 5.56 0 0 0 .025-.5A5.5 5.5 0 0 0 7.207 9.021C7.137 9.017 7.071 9 7 9a4 4 0 1 0 0 8h2.167M12 19v-9m0 0-2 2m2-2 2 2"/></svg>
+                    <p className="mb-2 text-sm"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                  <p className="text-xs">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                  </div>
+                  <input {...register("images")} id="dropzone-file" type="file" multiple className="hidden" />
+                   {formState.errors.images &&<p className="text-sm text-red-500">{formState.errors.images.message}</p>}
+                  </label>
+                  </div>
 
                 <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
                 <div className="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">    

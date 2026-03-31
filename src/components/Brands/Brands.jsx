@@ -80,12 +80,22 @@ export function Brands() {
   }
 
   function deleteBrands(id){
+     Swal.fire({
+              title: "Are you sure?",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) { 
     axios.delete(`https://nti-ecommerce.vercel.app/api/v1/brands/${id}`).then((res=>{
       console.log(res.data)
       fetchBrands()
    })).catch((err)=>{
      console.log(err)
    })
+  }}
+ )
  }
 
   return <>

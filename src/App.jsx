@@ -11,6 +11,7 @@ import {Brands} from "./components/Brands/Brands"
 import {Coupons} from "./components/Coupons/Coupons"
 import {Orders} from "./components/Orders/Orders"
 import { ProtectedLogin } from './components/protectedRouters/ProtectedLogin'
+import { ProductItem } from './components/ProductItem/ProductItem'
 
 let routes = createBrowserRouter([
   {path:"/",element:<AuthLayout/>, children:[
@@ -21,6 +22,7 @@ let routes = createBrowserRouter([
     {path:"/categories" , element: <Categories/> },
     {path:"/subcategories" , element: <SubCategories/> },
     {path:"/products" , element: <Products/> },
+    {path:"/product/:id" , element :<ProductItem/>},
     {path:"/brands" , element: <Brands/> },
     {path:"/coupons" , element: <Coupons/> },
     {path:"/orders" , element: <Orders/> }

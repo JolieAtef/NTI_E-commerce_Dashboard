@@ -5,6 +5,7 @@ import axios from "axios";
 import { useForm } from "react-hook-form";
 import {z} from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import Swal from "sweetalert2"
 
 const schema= z.object({
   name:z.string().min(3,"category name must be at least 3 character").max(30,"category name must be at most 30 character"),
@@ -88,12 +89,21 @@ export function Categories() {
   }
 
   function deleteCategory(id){
-    axios.delete(`https://nti-ecommerce.vercel.app/api/v1/categories/${id}`).then((res=>{
-      console.log(res.data)
-      fetchCategories()
-   })).catch((err)=>{
-     console.log(err)
-   })
+    Swal.fire({
+      title: "Are you sure?",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) { 
+        axios.delete(`https://nti-ecommerce.vercel.app/api/v1/categories/${id}`).then((res)=>{
+          fetchCategories()
+        }).catch((err)=>{
+          console.log(err.message)
+        })
+      }
+    });
  }
 
   return <>
